@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            arch: arm64
+          - os: macos-13
+            arch: x64
+          - os: windows-latest
+            arch: x64
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Package (Mac)
+        if: runner.os == 'macOS'
+        env:
+          GH_TOKEN: ${{ secrets.INTERNAL_TOKEN }}
+          # Add these secrets in GitHub repo settings for code signing
+          # CSC_LINK: ${{ secrets.MAC_CERTS }}
+          # CSC_KEY_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
+        run: pnpm electron-builder --mac --${{ matrix.arch }} --publish always
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        env:
+          GH_TOKEN: ${{ secrets.INTERNAL_TOKEN }}
+        run: pnpm electron-builder --win --x64 --publish always
