@@ -1,9 +1,14 @@
 {
   "name": "avo",
   "version": "1.0.0",
-  "description": "Text-to-speech app with online (Edge TTS) and offline (Piper) support",
+  "description": "Text-to-speech app powered by Microsoft Edge TTS",
+  "license": "MIT",
   "homepage": "https://avo.istorry.com",
-  "author": "Jatinjit Singh <i6oz@icloud.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/istorry/avo"
+  },
+  "author": "Jatinjit Singh",
   "main": "./out/main/index.js",
   "scripts": {
     "format": "oxfmt --write .",

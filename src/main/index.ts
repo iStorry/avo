@@ -60,8 +60,7 @@ app.whenReady().then(() => {
       if (mode === "online") {
         return onlineTTS(text, voiceId);
       } else {
-        console.log("Offline TTS is not implemented yet.");
-        // return offlineTTS(text, voiceId)
+        throw new Error("Offline TTS is not supported yet.");
       }
     },
   );
@@ -70,8 +69,7 @@ app.whenReady().then(() => {
     if (mode === "online") {
       return getOnlineVoices();
     } else {
-      console.log("Offline voices are not implemented yet.");
-      // return getOfflineVoices()
+      throw new Error("Offline voices are not supported yet.");
     }
   });
 

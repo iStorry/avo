@@ -1,34 +1,50 @@
 # avo
 
-An Electron application with React and TypeScript
+A lightweight desktop text-to-speech app powered by Microsoft Edge TTS. Select a voice, type or paste text, and have it read aloud — all from a clean, minimal interface.
 
-## Recommended IDE Setup
+## Features
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- Online TTS via Microsoft Edge voices
+- Large selection of natural-sounding voices
+- Simple, distraction-free UI
+- Cross-platform: macOS, Windows, Linux
 
-## Project Setup
+## Download
 
-### Install
+Grab the latest release from the [Releases](../../releases) page.
+
+## Development
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm
+
+### Setup
 
 ```bash
-$ pnpm install
+pnpm install
 ```
 
-### Development
+### Run in dev mode
 
 ```bash
-$ pnpm dev
+pnpm dev
 ```
 
 ### Build
 
 ```bash
-# For windows
-$ pnpm build:win
+# macOS
+pnpm build:mac
 
-# For macOS
-$ pnpm build:mac
+# Windows
+pnpm build:win
 
-# For Linux
-$ pnpm build:linux
+# Linux
+pnpm build:linux
 ```
+
+## License
+
+[MIT](LICENSE)
