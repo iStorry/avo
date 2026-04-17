@@ -2,12 +2,13 @@ import { app, shell, BrowserWindow, ipcMain } from "electron"
 import { join } from "path"
 import { electronApp, optimizer, is } from "@electron-toolkit/utils"
 import icon from "../../resources/icon.png?asset"
+import { getOnlineVoices, onlineTTS } from "./tts/online"
 
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
-    height: 670,
+    height: 450,
     resizable: false,
     show: false,
     autoHideMenuBar: true,
@@ -52,6 +53,27 @@ app.whenReady().then(() => {
 
   // IPC test
   ipcMain.on("ping", () => console.log("pong"))
+
+  ipcMain.handle(
+    "tts:speak",
+    async (_event, text: string, voiceId: string, mode: "online" | "offline") => {
+      if (mode === "online") {
+        return onlineTTS(text, voiceId)
+      } else {
+        console.log("Offline TTS is not implemented yet.")
+        // return offlineTTS(text, voiceId)
+      }
+    },
+  )
+
+  ipcMain.handle("tts:getVoices", async (_event, mode: "online" | "offline") => {
+    if (mode === "online") {
+      return getOnlineVoices()
+    } else {
+      console.log("Offline voices are not implemented yet.")
+      // return getOfflineVoices()
+    }
+  })
 
   createWindow()
 

@@ -1,4 +1,4 @@
-import { contextBridge } from "electron"
+import { contextBridge, ipcRenderer } from "electron"
 import { electronAPI } from "@electron-toolkit/preload"
 
 // Custom APIs for renderer
@@ -11,6 +11,16 @@ if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld("electron", electronAPI)
     contextBridge.exposeInMainWorld("api", api)
+    contextBridge.exposeInMainWorld("ttsAPI", {
+      speak: (text: string, voiceId: string, mode: "online" | "offline") => {
+        console.log("Invoking speak with:", { text, voiceId, mode })
+        return ipcRenderer.invoke("tts:speak", text, voiceId, mode)
+      },
+
+      getVoices: (mode: "online" | "offline") => {
+        return ipcRenderer.invoke("tts:getVoices", mode)
+      },
+    })
   } catch (error) {
     console.error(error)
   }

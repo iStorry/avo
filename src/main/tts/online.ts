@@ -1,11 +1,13 @@
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts"
 import { join } from "path"
 import { tmpdir } from "os"
-import { Voice } from "../types/voice"
+import { TTSVoice } from "src/types/voice"
+import { mkdirSync } from "fs"
+import { readFile } from "fs/promises"
 
-let cachedVoices: Voice[] | null = null
+let cachedVoices: TTSVoice[] | null = null
 
-export async function getOnlineVoices(): Promise<Voice[]> {
+export async function getOnlineVoices(): Promise<TTSVoice[]> {
   if (cachedVoices) return cachedVoices
 
   const tts = new MsEdgeTTS()
@@ -22,12 +24,14 @@ export async function getOnlineVoices(): Promise<Voice[]> {
   return cachedVoices
 }
 
-export async function onlineTTS(text: string, voiceId: string): Promise<string> {
+export async function onlineTTS(text: string, voiceId: string): Promise<Buffer> {
   const tts = new MsEdgeTTS()
   await tts.setMetadata(voiceId, OUTPUT_FORMAT.AUDIO_24KHZ_96KBITRATE_MONO_MP3)
 
-  const outputPath = join(tmpdir(), `tts-online-${Date.now()}.mp3`)
-  await tts.toFile(outputPath, text)
+  const outputDir = join(tmpdir(), `tts-online-${Date.now()}`)
+  mkdirSync(outputDir, { recursive: true })
+  await tts.toFile(outputDir, text)
 
-  return outputPath
+  const audioPath = join(outputDir, "audio.mp3")
+  return readFile(audioPath)
 }
