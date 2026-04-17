@@ -7,5 +7,5 @@ export function Header(): React.JSX.Element {
         </h1>
       </div>
     </header>
-  )
+  );
 }

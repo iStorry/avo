@@ -1,13 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "typescript",
-    "react",
-    "unicorn"
-  ],
-  "jsPlugins": [
-    "eslint-plugin-prettier"
-  ],
+  "plugins": ["typescript", "react", "unicorn"],
   "categories": {
     "correctness": "off"
   },
@@ -26,11 +19,7 @@
     "sampleRate": "readonly",
     "WorkletGlobalScope": "readonly"
   },
-  "ignorePatterns": [
-    "**/node_modules",
-    "**/dist",
-    "**/out"
-  ],
+  "ignorePatterns": ["**/node_modules", "**/dist", "**/out"],
   "rules": {
     "constructor-super": "error",
     "for-direction": "error",
@@ -111,13 +100,10 @@
     "react/no-string-refs": "error",
     "react/no-unescaped-entities": "error",
     "react/no-unknown-property": "error",
-    "prettier/prettier": "warn",
     "no-empty-function": [
       "error",
       {
-        "allow": [
-          "arrowFunctions"
-        ]
+        "allow": ["arrowFunctions"]
       }
     ],
     "typescript/ban-ts-comment": [
@@ -146,25 +132,11 @@
     "typescript/no-wrapper-object-types": "error",
     "typescript/prefer-as-const": "error",
     "typescript/prefer-namespace-keyword": "error",
-    "typescript/triple-slash-reference": "error",
-    "typescript/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true,
-        "allowTypedFunctionExpressions": true,
-        "allowHigherOrderFunctions": true,
-        "allowIIFEs": true
-      }
-    ]
+    "typescript/triple-slash-reference": "error"
   },
   "overrides": [
     {
-      "files": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.mts",
-        "**/*.cts"
-      ],
+      "files": ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
       "rules": {
         "constructor-super": "off",
         "no-class-assign": "off",
@@ -187,18 +159,13 @@
       }
     },
     {
-      "files": [
-        "*.js",
-        "*.mjs"
-      ],
+      "files": ["*.js", "*.mjs"],
       "rules": {
         "typescript/explicit-function-return-type": "off"
       }
     },
     {
-      "files": [
-        "**/*.{ts,tsx}"
-      ],
+      "files": ["**/*.{ts,tsx}"],
       "rules": {
         "react/rules-of-hooks": "error",
         "react/exhaustive-deps": "warn",

@@ -1,10 +1,10 @@
-import { AvailableVoices } from "./components/available-voices"
-import { Header } from "./components/header"
+import { AvailableVoices } from "./components/available-voices";
+import { Header } from "./components/header";
 
-import { Textarea } from "./components/ui/textarea"
-import * as React from "react"
-import { useTTS } from "./hooks/use-tts"
-import { Button } from "./components/ui/button"
+import { Textarea } from "./components/ui/textarea";
+import * as React from "react";
+import { useTTS } from "./hooks/use-tts";
+import { Button } from "./components/ui/button";
 
 function App(): React.JSX.Element {
   const {
@@ -16,9 +16,9 @@ function App(): React.JSX.Element {
     stop,
     isSpeaking,
     error,
-  } = useTTS()
+  } = useTTS();
 
-  const [text, setText] = React.useState("")
+  const [text, setText] = React.useState("");
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,7 +50,7 @@ function App(): React.JSX.Element {
         {error && <p className="error">{error}</p>}
       </main>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,15 +1,15 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select"
-import { Label } from "./ui/label"
-import { Skeleton } from "./ui/skeleton"
-import { formatVoiceName } from "@renderer/lib/formatter"
-import * as React from "react"
-import { TTSVoice } from "src/types/voice"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Label } from "./ui/label";
+import { Skeleton } from "./ui/skeleton";
+import { formatVoiceName } from "@renderer/lib/formatter";
+import * as React from "react";
+import { TTSVoice } from "src/types/voice";
 
 interface AvailableVoicesProps {
-  isLoadingVoices: boolean
-  voices: TTSVoice[]
-  selectedVoice: string
-  onVoiceSelect: (voiceId: string) => void
+  isLoadingVoices: boolean;
+  voices: TTSVoice[];
+  selectedVoice: string;
+  onVoiceSelect: (voiceId: string) => void;
 }
 
 export function AvailableVoices({
@@ -22,8 +22,8 @@ export function AvailableVoices({
     return voices.map(voice => ({
       label: formatVoiceName(voice.name),
       value: voice.id,
-    }))
-  }, [voices])
+    }));
+  }, [voices]);
 
   return (
     <div className="space-y-2">
@@ -35,8 +35,8 @@ export function AvailableVoices({
           items={options}
           value={selectedVoice}
           onValueChange={value => {
-            if (!value) return
-            onVoiceSelect?.(value)
+            if (!value) return;
+            onVoiceSelect?.(value);
           }}
         >
           <SelectTrigger className="w-full">
@@ -52,5 +52,5 @@ export function AvailableVoices({
         </Select>
       )}
     </div>
-  )
+  );
 }
