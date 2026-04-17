@@ -1,0 +1,24 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "always"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/out": true,
+    "**/.zed": true,
+    "**/.idea": true,
+    "**/.next": true,
+    "**/Thumbs.db": true
+  },
+  "oxc.unusedDisableDirectives": "warn",
+  "makefile.configureOnOpen": false
+}
