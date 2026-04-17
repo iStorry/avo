@@ -51,9 +51,6 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window);
   });
 
-  // IPC test
-  ipcMain.on("ping", () => console.log("pong"));
-
   ipcMain.handle(
     "tts:speak",
     async (_event, text: string, voiceId: string, mode: "online" | "offline") => {

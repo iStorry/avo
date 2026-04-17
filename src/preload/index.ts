@@ -13,7 +13,6 @@ if (process.contextIsolated) {
     contextBridge.exposeInMainWorld("api", api);
     contextBridge.exposeInMainWorld("ttsAPI", {
       speak: (text: string, voiceId: string, mode: "online" | "offline") => {
-        console.log("Invoking speak with:", { text, voiceId, mode });
         return ipcRenderer.invoke("tts:speak", text, voiceId, mode);
       },
 

@@ -9,6 +9,13 @@
     "url": "https://github.com/istorry/avo"
   },
   "author": "Jatinjit Singh",
+  "keywords": ["tts", "text-to-speech", "electron", "edge-tts", "desktop"],
+  "bugs": {
+    "url": "https://github.com/istorry/avo/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
   "main": "./out/main/index.js",
   "scripts": {
     "format": "oxfmt --write .",
