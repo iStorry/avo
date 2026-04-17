@@ -1,7 +1,7 @@
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
 import { join } from "path";
 import { tmpdir } from "os";
-import { TTSVoice } from "src/types/voice";
+import { TTSVoice } from "../../types/voice";
 import { mkdirSync } from "fs";
 import { readFile } from "fs/promises";
 
